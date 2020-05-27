@@ -17,6 +17,7 @@ class HomeManager {
       for(final DocumentSnapshot document in snapshot.documents){
         sections.add(Section.fromDocument(document));
       }
+      print(sections);
     });
   }
 }
