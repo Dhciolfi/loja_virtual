@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/models/admin_users_manager.dart';
 import 'package:lojavirtual/models/cart_manager.dart';
 import 'package:lojavirtual/models/home_manager.dart';
 import 'package:lojavirtual/models/product.dart';
@@ -38,6 +39,12 @@ class MyApp extends StatelessWidget {
           update: (_, userManager, cartManager) =>
             cartManager..updateUser(userManager),
         ),
+        ChangeNotifierProxyProvider<UserManager, AdminUsersManager>(
+          create: (_) => AdminUsersManager(),
+          lazy: false,
+          update: (_, userManager, adminUsersManager) =>
+            adminUsersManager..updateUser(userManager),
+        )
       ],
       child: MaterialApp(
         title: 'Loja do Daniel',
