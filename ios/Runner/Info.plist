@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>lojavirtual</string>
+	<string>Loja do Daniel</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -41,5 +41,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Acessar galeria para buscar imagem</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Acessar camera para adicionar imagem</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Acessar camera para adicionar imagem</string>
 </dict>
 </plist>
