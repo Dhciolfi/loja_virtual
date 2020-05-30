@@ -24,6 +24,8 @@ class Product extends ChangeNotifier {
   List<String> images;
   List<ItemSize> sizes;
 
+  List<dynamic> newImages;
+
   ItemSize _selectedSize;
   ItemSize get selectedSize => _selectedSize;
   set selectedSize(ItemSize value){
@@ -70,4 +72,8 @@ class Product extends ChangeNotifier {
     );
   }
 
+  @override
+  String toString() {
+    return 'Product{id: $id, name: $name, description: $description, images: $images, sizes: $sizes, newImages: $newImages}';
+  }
 }
