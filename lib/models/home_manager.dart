@@ -26,6 +26,11 @@ class HomeManager extends ChangeNotifier {
     });
   }
 
+  void addSection(Section section){
+    _editingSections.add(section);
+    notifyListeners();
+  }
+
   List<Section> get sections {
     if(editing)
       return _editingSections;
