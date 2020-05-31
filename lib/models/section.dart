@@ -19,6 +19,13 @@ class Section extends ChangeNotifier {
   String type;
   List<SectionItem> items;
 
+  String _error;
+  String get error => _error;
+  set error(String value){
+    _error = value;
+    notifyListeners();
+  }
+
   void addItem(SectionItem item){
     items.add(item);
     notifyListeners();
@@ -27,6 +34,17 @@ class Section extends ChangeNotifier {
   void removeItem(SectionItem item){
     items.remove(item);
     notifyListeners();
+  }
+
+  bool valid(){
+    if(name == null || name.isEmpty){
+      error = 'Título inválido';
+    } else if(items.isEmpty){
+      error = 'Insira ao menos uma imagem';
+    } else {
+      error = null;
+    }
+    return error == null;
   }
 
   Section clone(){
