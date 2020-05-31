@@ -103,8 +103,7 @@ class EditProductScreen extends StatelessWidget {
                         if(formKey.currentState.validate()){
                           formKey.currentState.save();
 
-                          print(product);
-                          print('válido!!!');
+                          product.save();
                         }
                       },
                       textColor: Colors.white,
