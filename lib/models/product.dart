@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lojavirtual/models/item_size.dart';
+import 'package:uuid/uuid.dart';
 
 class Product extends ChangeNotifier {
 
@@ -19,8 +23,10 @@ class Product extends ChangeNotifier {
   }
 
   final Firestore firestore = Firestore.instance;
+  final FirebaseStorage storage = FirebaseStorage.instance;
 
   DocumentReference get firestoreRef => firestore.document('products/$id');
+  StorageReference get storageRef => storage.ref().child('products').child(id);
 
   String id;
   String name;
@@ -82,6 +88,35 @@ class Product extends ChangeNotifier {
       id = doc.documentID;
     } else {
       await firestoreRef.updateData(data);
+    }
+
+    // IMAGES [URL1, URL2, URL3]
+    // NEWIMAGES [URL2, URL3, FILE1, FILE2]
+    // UPDATED [URL2, URL3, FURL1, FURL2]
+
+    // MANDA FILE1 PRO STORAGE -> FURL1
+    // MANDA FILE2 PRO STORAGE -> FURL2
+    // EXCLUI IMAGEM URL1 DO STORAGE
+
+    // IMAGES [URL1, URL2, URL3]
+    // NEWIMAGES [URL3, FILE1]
+    // UPDATE [URL3, FURL1]
+
+    // MANDA FILE1 PRO STORAGE -> FURL1
+    // EXLUIR URL1 DO STORAGE
+    // EXLUIR URL2 DO STORAGE
+
+    final List<String> updateImages = [];
+
+    for(final newImage in newImages){
+      if(images.contains(newImage)){
+        updateImages.add(newImage as String);
+      } else {
+        final StorageUploadTask task = storageRef.child(Uuid().v1()).putFile(newImage as File);
+        final StorageTaskSnapshot snapshot = await task.onComplete;
+        final String url = await snapshot.ref.getDownloadURL() as String;
+        updateImages.add(url);
+      }
     }
   }
 
