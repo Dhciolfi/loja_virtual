@@ -90,22 +90,6 @@ class Product extends ChangeNotifier {
       await firestoreRef.updateData(data);
     }
 
-    // IMAGES [URL1, URL2, URL3]
-    // NEWIMAGES [URL2, URL3, FILE1, FILE2]
-    // UPDATED [URL2, URL3, FURL1, FURL2]
-
-    // MANDA FILE1 PRO STORAGE -> FURL1
-    // MANDA FILE2 PRO STORAGE -> FURL2
-    // EXCLUI IMAGEM URL1 DO STORAGE
-
-    // IMAGES [URL1, URL2, URL3]
-    // NEWIMAGES [URL3, FILE1]
-    // UPDATE [URL3, FURL1]
-
-    // MANDA FILE1 PRO STORAGE -> FURL1
-    // EXLUIR URL1 DO STORAGE
-    // EXLUIR URL2 DO STORAGE
-
     final List<String> updateImages = [];
 
     for(final newImage in newImages){
@@ -118,6 +102,19 @@ class Product extends ChangeNotifier {
         updateImages.add(url);
       }
     }
+
+    for(final image in images){
+      if(!newImages.contains(image)){
+        try {
+          final ref = await storage.getReferenceFromUrl(image);
+          await ref.delete();
+        } catch (e){
+          debugPrint('Falha ao deletar $image');
+        }
+      }
+    }
+
+    await firestoreRef.updateData({'images': updateImages});
   }
 
   Product clone(){
