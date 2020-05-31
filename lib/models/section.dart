@@ -50,10 +50,11 @@ class Section extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> save() async {
+  Future<void> save(int pos) async {
     final Map<String, dynamic> data = {
       'name': name,
       'type': type,
+      'pos': pos,
     };
 
     if(id == null){
@@ -90,6 +91,19 @@ class Section extends ChangeNotifier {
     };
 
     await firestoreRef.updateData(itemsData);
+  }
+
+  Future<void> delete() async {
+    await firestoreRef.delete();
+    for(final item in items){
+      try {
+        final ref = await storage.getReferenceFromUrl(
+            item.image as String
+        );
+        await ref.delete();
+      // ignore: empty_catches
+      } catch (e){}
+    }
   }
 
   bool valid(){
