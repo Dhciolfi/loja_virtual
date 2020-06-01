@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lojavirtual/models/cart_product.dart';
+import 'package:lojavirtual/models/cepaberto_address.dart';
 import 'package:lojavirtual/models/product.dart';
 import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
+import 'package:lojavirtual/services/cepaberto_service.dart';
 
 class CartManager extends ChangeNotifier {
 
@@ -84,4 +86,20 @@ class CartManager extends ChangeNotifier {
     }
     return true;
   }
+
+  // ADDRESS
+
+  Future<void> getAddress(String cep) async {
+    final cepAbertoService = CepAbertoService();
+
+    try {
+      final address = await cepAbertoService.getAddressFromCep(cep);
+
+      print(address);
+    } catch (e){
+      debugPrint(e.toString());
+    }
+  }
+
+
 }
