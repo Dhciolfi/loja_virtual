@@ -125,10 +125,19 @@ class AddressInputField extends StatelessWidget {
             color: primaryColor,
             disabledColor: primaryColor.withAlpha(100),
             textColor: Colors.white,
-            onPressed: (){
+            onPressed: () async {
               if(Form.of(context).validate()){
                 Form.of(context).save();
-                context.read<CartManager>().setAddress(address);
+                try {
+                  await context.read<CartManager>().setAddress(address);
+                } catch (e){
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('$e'),
+                      backgroundColor: Colors.red,
+                    )
+                  );
+                }
               }
             },
             child: const Text('Calcular Frete'),
