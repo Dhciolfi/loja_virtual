@@ -1,4 +1,4 @@
-class CepAbertoAddress{
+class CepAbertoAddress {
 
   final double altitude;
   final String cep;

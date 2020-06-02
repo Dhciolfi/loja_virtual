@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lojavirtual/models/address.dart';
 import 'package:lojavirtual/models/cart_product.dart';
 import 'package:lojavirtual/models/cepaberto_address.dart';
 import 'package:lojavirtual/models/product.dart';
 import 'package:lojavirtual/models/user.dart';
 import 'package:lojavirtual/models/user_manager.dart';
+import 'package:lojavirtual/screens/address/address_screen.dart';
 import 'package:lojavirtual/services/cepaberto_service.dart';
 
 class CartManager extends ChangeNotifier {
@@ -12,6 +14,7 @@ class CartManager extends ChangeNotifier {
   List<CartProduct> items = [];
 
   User user;
+  Address address;
 
   num productsPrice = 0.0;
 
@@ -93,9 +96,20 @@ class CartManager extends ChangeNotifier {
     final cepAbertoService = CepAbertoService();
 
     try {
-      final address = await cepAbertoService.getAddressFromCep(cep);
+      final cepAbertoAddress = await cepAbertoService.getAddressFromCep(cep);
 
-      print(address);
+      if(cepAbertoAddress != null){
+        address = Address(
+          street: cepAbertoAddress.logradouro,
+          district: cepAbertoAddress.bairro,
+          zipCode: cepAbertoAddress.cep,
+          city: cepAbertoAddress.cidade.nome,
+          state: cepAbertoAddress.estado.sigla,
+          lat: cepAbertoAddress.latitude,
+          long: cepAbertoAddress.longitude
+        );
+        notifyListeners();
+      }
     } catch (e){
       debugPrint(e.toString());
     }
