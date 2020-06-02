@@ -4,7 +4,6 @@ import 'package:lojavirtual/models/page_manager.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/admin_users/admin_users_screen.dart';
 import 'package:lojavirtual/screens/home/home_screen.dart';
-import 'package:lojavirtual/screens/login/login_screen.dart';
 import 'package:lojavirtual/screens/products/products_screen.dart';
 import 'package:provider/provider.dart';
 
