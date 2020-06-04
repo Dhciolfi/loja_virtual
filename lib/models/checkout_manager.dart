@@ -8,6 +8,13 @@ class CheckoutManager extends ChangeNotifier {
 
   CartManager cartManager;
 
+  bool _loading = false;
+  bool get loading => _loading;
+  set loading(bool value){
+    _loading = value;
+    notifyListeners();
+  }
+
   final Firestore firestore = Firestore.instance;
 
   // ignore: use_setters_to_change_properties
@@ -15,11 +22,14 @@ class CheckoutManager extends ChangeNotifier {
     this.cartManager = cartManager;
   }
 
-  Future<void> checkout({Function onStockFail}) async {
+  Future<void> checkout({Function onStockFail, Function onSuccess}) async {
+    loading = true;
+
     try {
       await _decrementStock();
     } catch (e){
       onStockFail(e);
+      loading = false;
       return;
     }
 
@@ -32,6 +42,10 @@ class CheckoutManager extends ChangeNotifier {
 
     await order.save();
 
+    cartManager.clear();
+
+    onSuccess();
+    loading = false;
   }
 
   Future<int> _getOrderId() async {
