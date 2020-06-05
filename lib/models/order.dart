@@ -3,6 +3,8 @@ import 'package:lojavirtual/models/address.dart';
 import 'package:lojavirtual/models/cart_manager.dart';
 import 'package:lojavirtual/models/cart_product.dart';
 
+enum Status { canceled, preparing, transporting, delivered }
+
 class Order {
 
   Order.fromCartManager(CartManager cartManager){
@@ -10,6 +12,7 @@ class Order {
     price = cartManager.totalPrice;
     userId = cartManager.user.id;
     address = cartManager.address;
+    status = Status.preparing;
   }
 
   Order.fromDocument(DocumentSnapshot doc){
@@ -23,6 +26,8 @@ class Order {
     userId = doc.data['user'] as String;
     address = Address.fromMap(doc.data['address'] as Map<String, dynamic>);
     date = doc.data['date'] as Timestamp;
+
+    status = Status.values[doc.data['status'] as int];
   }
   
   final Firestore firestore = Firestore.instance;
@@ -34,6 +39,8 @@ class Order {
         'price': price,
         'user': userId,
         'address': address.toMap(),
+        'status': status.index,
+        'date': Timestamp.now(),
       }
     );
   }
@@ -47,9 +54,28 @@ class Order {
 
   Address address;
 
+  Status status;
+
   Timestamp date;
 
   String get formattedId => '#${orderId.padLeft(6, '0')}';
+
+  String get statusText => getStatusText(status);
+
+  static String getStatusText(Status status) {
+    switch(status){
+      case Status.canceled:
+        return 'Cancelado';
+      case Status.preparing:
+        return 'Em preparação';
+      case Status.transporting:
+        return 'Em transporte';
+      case Status.delivered:
+        return 'Entregue';
+      default:
+        return '';
+    }
+  }
 
   @override
   String toString() {
