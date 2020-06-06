@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:lojavirtual/common/empty_card.dart';
 import 'package:lojavirtual/common/login_card.dart';
-import 'package:lojavirtual/common/order_tile.dart';
+import 'package:lojavirtual/common/order/order_tile.dart';
 import 'package:lojavirtual/models/orders_manager.dart';
 import 'package:provider/provider.dart';
 

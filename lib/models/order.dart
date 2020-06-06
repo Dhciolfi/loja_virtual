@@ -45,6 +45,26 @@ class Order {
     );
   }
 
+  Function() get back {
+    return status.index >= Status.transporting.index ?
+      (){
+        status = Status.values[status.index - 1];
+        firestore.collection('orders').document(orderId).updateData(
+          {'status': status.index}
+        );
+      } : null;
+  }
+
+  Function() get advance {
+    return status.index <= Status.transporting.index ?
+      (){
+        status = Status.values[status.index + 1];
+        firestore.collection('orders').document(orderId).updateData(
+          {'status': status.index}
+        );
+      } : null;
+  }
+
   String orderId;
 
   List<CartProduct> items;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lojavirtual/common/order/order_product_tile.dart';
 import 'package:lojavirtual/models/order.dart';
-import 'package:lojavirtual/screens/cart/components/order_product_tile.dart';
 
 class ConfirmationScreen extends StatelessWidget {
 
