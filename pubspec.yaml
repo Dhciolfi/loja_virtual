@@ -44,6 +44,8 @@ dependencies:
   brasil_fields: ^0.2.0
   geolocator: ^5.3.2+2
   sliding_up_panel: ^1.0.2
+  screenshot: ^0.1.1
+  gallery_saver: ^2.0.1
 
 dev_dependencies:
   flutter_test:
