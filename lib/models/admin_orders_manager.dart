@@ -30,7 +30,7 @@ class AdminOrdersManager extends ChangeNotifier {
     if(userFilter != null){
       output = output.where((o) => o.userId == userFilter.id).toList();
     }
-    
+
     return output;
   }
 
