@@ -47,6 +47,7 @@ dependencies:
   screenshot: ^0.1.1
   gallery_saver: ^2.0.1
   flutter_signin_button: ^1.0.0
+  flutter_facebook_login: ^3.0.0
 
 dev_dependencies:
   flutter_test:
