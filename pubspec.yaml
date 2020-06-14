@@ -46,6 +46,7 @@ dependencies:
   sliding_up_panel: ^1.0.2
   screenshot: ^0.1.1
   gallery_saver: ^2.0.1
+  flutter_signin_button: ^1.0.0
 
 dev_dependencies:
   flutter_test:
