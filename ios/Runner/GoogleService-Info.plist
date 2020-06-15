@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>780684814029-hbh30j59oa00781ciha3seghca58t13n.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.780684814029-hbh30j59oa00781ciha3seghca58t13n</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAl3bQSiKLvSHrBLmAftEEcJAERjz25BS0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>780684814029</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>br.com.ciolfi.lojavirtual</string>
+	<key>PROJECT_ID</key>
+	<string>loja-virtual-557ed</string>
+	<key>STORAGE_BUCKET</key>
+	<string>loja-virtual-557ed.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:780684814029:ios:bec68fdaa3c488f0c76b84</string>
+	<key>DATABASE_URL</key>
+	<string>https://loja-virtual-557ed.firebaseio.com</string>
+</dict>
+</plist>

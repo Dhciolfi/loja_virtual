@@ -47,5 +47,25 @@
     <string>Acessar camera para adicionar imagem</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Acessar camera para adicionar imagem</string>
+
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict> <key>CFBundleURLSchemes</key>
+    <array>
+    <string>fb705074733663048</string>
+    </array> </dict> </array>
+    <key>FacebookAppID</key>
+    <string>705074733663048</string>
+    <key>FacebookDisplayName</key>
+    <string>Loja do Daniel</string>
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+
 </dict>
 </plist>
