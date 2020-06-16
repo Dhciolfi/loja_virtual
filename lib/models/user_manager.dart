@@ -19,6 +19,17 @@ class UserManager extends ChangeNotifier {
 
   bool _loading = false;
   bool get loading => _loading;
+  set loading(bool value){
+    _loading = value;
+    notifyListeners();
+  }
+
+  bool _loadingFace = false;
+  bool get loadingFace => _loadingFace;
+  set loadingFace(bool value){
+    _loadingFace = value;
+    notifyListeners();
+  }
 
   bool get isLoggedIn => user != null;
 
@@ -38,7 +49,7 @@ class UserManager extends ChangeNotifier {
   }
 
   Future<void> facebookLogin({Function onFail, Function onSuccess}) async {
-    loading = true;
+    loadingFace = true;
 
     final result = await FacebookLogin().logIn(['email', 'public_profile']);
 
@@ -71,7 +82,7 @@ class UserManager extends ChangeNotifier {
         break;
     }
 
-    loading = false;
+    loadingFace = false;
   }
 
   Future<void> signUp({User user, Function onFail, Function onSuccess}) async {
@@ -95,11 +106,6 @@ class UserManager extends ChangeNotifier {
   void signOut(){
     auth.signOut();
     user = null;
-    notifyListeners();
-  }
-
-  set loading(bool value){
-    _loading = value;
     notifyListeners();
   }
 
