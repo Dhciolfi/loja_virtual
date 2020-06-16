@@ -43,4 +43,8 @@ class Store {
   Address address;
   Map<String, Map> opening;
 
+  String get addressText =>
+      '${address.street}, ${address.number}${address.complement.isNotEmpty ? ' - ${address.complement}' : ''} - '
+      '${address.district}, ${address.city}/${address.state}';
+
 }
