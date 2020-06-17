@@ -49,6 +49,7 @@ dependencies:
   flutter_signin_button: ^1.0.0
   flutter_facebook_login: ^3.0.0
   url_launcher: ^5.4.11
+  map_launcher: ^0.5.0
 
 dev_dependencies:
   flutter_test:
