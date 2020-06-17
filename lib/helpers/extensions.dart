@@ -6,4 +6,6 @@ extension Extra on TimeOfDay {
     return '${hour}h${minute.toString().padLeft(2, '0')}';
   }
 
+  int toMinutes() => hour*60 + minute;
+
 }
