@@ -91,4 +91,17 @@ class Store {
     }
   }
 
+  String get statusText {
+    switch(status){
+      case StoreStatus.closed:
+        return 'Fechada';
+      case StoreStatus.open:
+        return 'Aberta';
+      case StoreStatus.closing:
+        return 'Fechando';
+      default:
+        return '';
+    }
+  }
+
 }
