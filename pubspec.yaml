@@ -50,6 +50,7 @@ dependencies:
   flutter_facebook_login: ^3.0.0
   url_launcher: ^5.4.11
   map_launcher: ^0.5.0
+  flip_card: ^0.4.4
 
 dev_dependencies:
   flutter_test:
