@@ -25,7 +25,9 @@ import 'package:provider/provider.dart';
 void main() async {
   runApp(MyApp());
   
-  final response = await CloudFunctions.instance.getHttpsCallable(functionName: 'getUserData').call();
+  final response = await CloudFunctions.instance.getHttpsCallable(functionName: 'addMessage').call(
+    {"teste" : "Daniel"}
+  );
   print(response.data);
 }
 
