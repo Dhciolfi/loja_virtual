@@ -35,3 +35,8 @@ export const addMessage = functions.https.onCall( async (data, context) => {
 
     return {"success": snapshot.id};
 });
+
+export const onNewOrder = functions.firestore.document("/orders/{orderId}").onCreate((snapshot, context) => {
+    const orderId = context.params.orderId;
+    console.log(orderId);
+});

@@ -22,13 +22,8 @@ import 'package:lojavirtual/screens/select_product/select_product_screen.dart';
 import 'package:lojavirtual/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
+void main() {
   runApp(MyApp());
-  
-  final response = await CloudFunctions.instance.getHttpsCallable(functionName: 'addMessage').call(
-    {"teste" : "Daniel"}
-  );
-  print(response.data);
 }
 
 class MyApp extends StatelessWidget {
