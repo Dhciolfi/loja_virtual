@@ -48,6 +48,8 @@ class CheckoutManager extends ChangeNotifier {
       return;
     }
 
+    // CAPTURAR O PAGAMENTO
+
     final order = Order.fromCartManager(cartManager);
     order.orderId = orderId.toString();
 
