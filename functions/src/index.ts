@@ -1,7 +1,9 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
-import { CieloConstructor, Cielo, TransactionCreditCardRequestModel, CaptureRequestModel, CancelTransactionRequestModel, EnumBrands, TransactionCreditCardResponseModel} from 'cielo';
+import { CieloConstructor, Cielo, TransactionCreditCardRequestModel, EnumBrands} from 'cielo';
+
+//, CaptureRequestModel, CancelTransactionRequestModel, TransactionCreditCardResponseModel
 
 admin.initializeApp(functions.config().firebase);
 
@@ -120,7 +122,57 @@ export const authorizeCreditCard = functions.https.onCall(async (data, context) 
         }
     }
 
-    const transaction = await cielo.creditCard.transaction(saleData);
+    try {
+        const transaction = await cielo.creditCard.transaction(saleData);
+
+        if(transaction.payment.status === 1){
+            return {
+                "success": true,
+                "paymentId": transaction.payment.paymentId
+            }
+        } else {
+            let message = '';
+            switch(transaction.payment.returnCode) {
+                case '5':
+                    message = 'Não Autorizada';
+                    break;
+                case '57':
+                    message = 'Cartão expirado';
+                    break;
+                case '78':
+                    message = 'Cartão bloqueado';
+                    break;
+                case '99':
+                    message = 'Timeout';
+                    break;
+                case '77':
+                    message = 'Cartão cancelado';
+                    break;
+                case '70':
+                    message = 'Problemas com o Cartão de Crédito';
+                    break;
+                default:
+                    message = transaction.payment.returnMessage;
+                    break;
+            }
+            return {
+                "success": false,
+                "status": transaction.payment.status,
+                "error": {
+                    "code": transaction.payment.returnCode,
+                    "message": message
+                }
+            }
+        }
+    } catch (error){
+        return {
+            "success": false,
+            "error": {
+                "code": error.respose[0].Code,
+                "message": error.response[0].Message
+            }
+        };
+    }
 
 });
 
