@@ -12,13 +12,13 @@ class CieloPayment {
     final Map<String, dynamic> dataSale = {
       'merchantOrderId': orderId,
       'amount': (price * 100).toInt(),
-      'softDescriptor': 'Loja do Daniel',
+      'softDescriptor': 'Loja Daniel',
       'installments': 1,
       'creditCard': creditCard.toJson(),
       'cpf': user.cpf,
       'paymentType': 'CreditCard',
     };
-    
+
     final HttpsCallable callable = functions.getHttpsCallable(
         functionName: 'authorizeCreditCard'
     );

@@ -10,8 +10,8 @@ admin.initializeApp(functions.config().firebase);
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
 
-const merchantId = functions.config().cielo.merchantId;
-const merchantKey = functions.config().cielo.merchantKey;
+const merchantId = functions.config().cielo.merchantid;
+const merchantKey = functions.config().cielo.merchantkey;
 
 const cieloParams: CieloConstructor = {
     merchantId: merchantId,
@@ -108,8 +108,8 @@ export const authorizeCreditCard = functions.https.onCall(async (data, context) 
             currency: 'BRL',
             country: 'BRA',
             amount: data.amount,
-            installments: data.installment,
-            softDescriptor: data.softDescriptor,
+            installments: data.installments,
+            softDescriptor: data.softDescriptor.substring(0, 13),
             type: data.paymentType,
             capture: false,
             creditCard: {
@@ -165,6 +165,7 @@ export const authorizeCreditCard = functions.https.onCall(async (data, context) 
             }
         }
     } catch (error){
+        console.log("Error ", error);
         return {
             "success": false,
             "error": {
@@ -175,12 +176,6 @@ export const authorizeCreditCard = functions.https.onCall(async (data, context) 
     }
 
 });
-
-
-
-
-
-
 
 export const helloWorld = functions.https.onCall((data, context) => {
   return {data: "Hellow from Cloud Functions!!!"};
