@@ -35,8 +35,9 @@ class CheckoutManager extends ChangeNotifier {
 
     final orderId = await _getOrderId();
 
+    String payId;
     try {
-      String payId = await cieloPayment.authorize(
+      payId = await cieloPayment.authorize(
         creditCard: creditCard,
         price: cartManager.totalPrice,
         orderId: orderId.toString(),
@@ -57,16 +58,23 @@ class CheckoutManager extends ChangeNotifier {
       return;
     }
 
-    // CAPTURAR O PAGAMENTO
+    try {
+      await cieloPayment.capture(payId);
+    } catch (e){
+      onPayFail(e);
+      loading = false;
+      return;
+    }
 
     final order = Order.fromCartManager(cartManager);
     order.orderId = orderId.toString();
+    order.payId = payId;
 
     await order.save();
 
     cartManager.clear();
 
-    //onSuccess(order);
+    onSuccess(order);
     loading = false;
   }
 

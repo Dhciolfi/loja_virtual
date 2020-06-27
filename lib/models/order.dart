@@ -28,6 +28,8 @@ class Order {
     date = doc.data['date'] as Timestamp;
 
     status = Status.values[doc.data['status'] as int];
+
+    payId = doc.data['payId'] as String;
   }
   
   final Firestore firestore = Firestore.instance;
@@ -48,6 +50,7 @@ class Order {
         'address': address.toMap(),
         'status': status.index,
         'date': Timestamp.now(),
+        'payId': payId,
       }
     );
   }
@@ -74,6 +77,7 @@ class Order {
   }
 
   String orderId;
+  String payId;
 
   List<CartProduct> items;
   num price;
