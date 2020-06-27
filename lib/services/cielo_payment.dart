@@ -40,4 +40,15 @@ class CieloPayment {
     }
   }
 
+  Future<void> capture(String payId) async {
+    final Map<String, dynamic> captureData = {
+      'payId': payId
+    };
+    final HttpsCallable callable = functions.getHttpsCallable(
+        functionName: 'captureCreditCard'
+    );
+    final response = await callable.call(captureData);
+    print(response.data);
+  }
+
 }

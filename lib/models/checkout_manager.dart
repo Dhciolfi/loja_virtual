@@ -49,7 +49,7 @@ class CheckoutManager extends ChangeNotifier {
       return;
     }
 
-    /*try {
+    try {
       await _decrementStock();
     } catch (e){
       onStockFail(e);
@@ -64,7 +64,7 @@ class CheckoutManager extends ChangeNotifier {
 
     await order.save();
 
-    cartManager.clear();*/
+    cartManager.clear();
 
     //onSuccess(order);
     loading = false;
