@@ -14,8 +14,8 @@ const merchantKey = functions.config().cielo.merchantkey;
 const cieloParams: CieloConstructor = {
     merchantId: merchantId,
     merchantKey: merchantKey,
-    sandbox: true,
-    debug: true,
+    sandbox: false,
+    debug: false,
 }
 
 const cielo = new Cielo(cieloParams);
