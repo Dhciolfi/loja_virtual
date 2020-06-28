@@ -62,7 +62,7 @@ class CartTile extends StatelessWidget {
                                 ),
                               );
                             else
-                              return Text(
+                              return const Text(
                                 'Sem estoque suficiente',
                                 style: TextStyle(
                                   color: Colors.red,

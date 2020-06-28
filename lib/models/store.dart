@@ -17,7 +17,7 @@ class Store {
       final timesString = value as String;
 
       if(timesString != null && timesString.isNotEmpty){
-        final splitted = timesString.split(RegExp(r"[:-]"));
+        final splitted = timesString.split(RegExp("[:-]"));
 
         return MapEntry(
           key,
