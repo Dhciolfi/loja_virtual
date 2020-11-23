@@ -167,7 +167,7 @@ export const authorizeCreditCard = functions.https.onCall(async (data, context) 
         return {
             "success": false,
             "error": {
-                "code": error.respose[0].Code,
+                "code": error.response[0].Code,
                 "message": error.response[0].Message
             }
         };
@@ -220,7 +220,7 @@ export const captureCreditCard = functions.https.onCall(async (data, context) =>
         return {
             "success": false,
             "error": {
-                "code": error.respose[0].Code,
+                "code": error.response[0].Code,
                 "message": error.response[0].Message
             }
         };
@@ -273,7 +273,7 @@ export const cancelCreditCard = functions.https.onCall(async (data, context) => 
         return {
             "success": false,
             "error": {
-                "code": error.respose[0].Code,
+                "code": error.response[0].Code,
                 "message": error.response[0].Message
             }
         };
